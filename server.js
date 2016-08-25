@@ -37,7 +37,7 @@ proxy.on('error', function(e) {
   console.log('Could not connect to proxy, please try again...')
 });
 
-app.get('/api/:propertyName', function(req, res){
+app.get('/userproperty/:propertyName', function(req, res){
   var options = {
     url: 'https://api.github.com/search/code?q=' + req.params.propertyName + 'in:file+repo:unicode-cldr/cldr-misc-full&access_token=' + configs,
     headers: {'user-agent': 'node.js'}
@@ -51,7 +51,7 @@ app.get('/api/:propertyName', function(req, res){
   });
 });
 
-app.get('/api2/:locale', function(req, res){
+app.get('/location/:locale', function(req, res){
     var options = {
       url: 'https://api.github.com/repos/unicode-cldr/cldr-misc-full/contents/main/' + req.params.locale + '/delimiters.json?access_token=' + configs,
       headers: {'user-agent': 'node.js'}

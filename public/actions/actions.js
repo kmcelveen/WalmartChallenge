@@ -14,3 +14,10 @@ export function getPropName(propName){
     propName
   }
 }
+
+export function getDelimiter(val){
+  return {
+    type: 'DELIMITER_VAL',
+    delimiter: val
+  }
+}

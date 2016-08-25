@@ -5,6 +5,8 @@ import {createStore } from 'redux'
 import App from './public/components/app'
 import getReducers from './public/reducers/reducers'
 
+
+
 const store = createStore(getReducers);
 
 render(

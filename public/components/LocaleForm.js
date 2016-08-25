@@ -1,6 +1,8 @@
 import React from 'react'
 import {getLocaleData, getPropName} from '../actions/actions'
 import { connect } from 'react-redux'
+// import { Button1 } from 'muicss/lib/react/button';
+
 
 class LocaleForm extends React.Component {
   constructor(props){
@@ -15,7 +17,7 @@ class LocaleForm extends React.Component {
      this.setState({
         option: prop
      });
-    fetch('/api/' + prop).then(response => response.json()).then(data => {
+    fetch('/userproperty/' + prop).then(response => response.json()).then(data => {
        this.props.dispatch(getLocaleData(data));
        this.props.dispatch(getPropName(prop));
     })
@@ -31,7 +33,7 @@ class LocaleForm extends React.Component {
             <option value="alternateQuotationStart">alternateQuotationStart</option>
             <option value="alternateQuotationEnd">alternateQuotationEnd</option>
           </select>
-          <input type='submit' value='Click'/>
+          <button>Click</button>
         </form>
         <h3>You chose: {this.state.option}</h3>
       </div>
