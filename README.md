@@ -4,6 +4,8 @@
 
 npm install
 
-webpack -w
+**There is a postinstall script that will build bundle 
+
+npm start
 
 Navigate to http://localhost:3000/
