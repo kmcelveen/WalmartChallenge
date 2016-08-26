@@ -4,7 +4,7 @@
 
 npm install
 
-**There is a postinstall script that will build bundle 
+**There is a postinstall script that will build the bundle **
 
 npm start
 
