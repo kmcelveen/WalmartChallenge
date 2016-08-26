@@ -1,23 +1,20 @@
-import axios from 'axios'
-
-export function getLocaleData(userRequests){
-
+export function getLocaleData(userRequests) {
   return {
     type: 'LOCALE_DATA',
     data: userRequests
   };
 }
 
-export function getPropName(propName){
+export function getPropName(propName) {
   return {
     type: 'PROPERTY_NAME',
     propName
-  }
+  };
 }
 
-export function getDelimiter(val){
+export function getDelimiter(val) {
   return {
     type: 'DELIMITER_VAL',
     delimiter: val
-  }
+  };
 }

@@ -7,7 +7,7 @@ import { Appbar } from 'muicss/react';
 
 class App extends React.Component {
 
-  render(){
+  render() {
     let appBarStyles = {
       fontFamily: 'Lobster, cursive'
     }
@@ -17,11 +17,11 @@ class App extends React.Component {
         <LocaleForm/>
         <LocaleList list={this.props.localeList}/>
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     localeList : state.localeList,
     propertyName: state.propertyName,

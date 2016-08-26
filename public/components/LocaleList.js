@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {getLocaleData, getPropName, getDelimiter} from '../actions/actions';
 
 class LocaleList extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       value: '',
@@ -13,8 +13,8 @@ class LocaleList extends React.Component {
 
   handleContent(country){
     fetch('/location/' + country).then(response => response.json()).then(data => {
-      let queryDelimiterValue = data.main[country].delimiters[this.props.propertyName]
-      let propertyDelimiterValue = JSON.stringify(queryDelimiterValue)
+      let queryDelimiterValue = data.main[country].delimiters[this.props.propertyName];
+      let propertyDelimiterValue = JSON.stringify(queryDelimiterValue);
       this.setState({
         value: propertyDelimiterValue,
         country: country
@@ -26,7 +26,7 @@ class LocaleList extends React.Component {
   render(){
 
     let listItemStyles = {
-      cursor:"pointer", 
+      cursor:"pointer",
       backgroundColor:"#D6D6D6",
       fontFamily: 'Baloo Tamma, cursive',
       fontWeight: 'bold',
@@ -40,7 +40,7 @@ class LocaleList extends React.Component {
             {this.props.list ? this.props.list.map((item, index) => {
               let country = item.path.split('/')[1]
              return <li style={listItemStyles} className="list-group-item" key={index} onClick={() => this.handleContent(country)}>{country}</li>;
-            }): null} 
+            }): null}
           </ul>
         </div>
         <div className="col-sm-4">
@@ -48,16 +48,16 @@ class LocaleList extends React.Component {
           <h1>{this.state.value.length ? this.state.value : null}</h1>
         </div>
       </div>
-    )
+    );
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     localeList : state.localeList,
     propertyName: state.propertyName,
     delimiter: state.delimiter
-  }
+  };
 }
 
 export default connect(mapStateToProps)(LocaleList);

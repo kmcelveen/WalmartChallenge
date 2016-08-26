@@ -3,11 +3,11 @@ import {getLocaleData, getPropName} from '../actions/actions';
 import { connect } from 'react-redux';
 
 class LocaleForm extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = {
       option: ""
-    }
+    };
   }
 
   handleSubmit(e){
@@ -19,7 +19,7 @@ class LocaleForm extends React.Component {
     fetch('/userproperty/' + prop).then(response => response.json()).then(data => {
        this.props.dispatch(getLocaleData(data));
        this.props.dispatch(getPropName(prop));
-    })
+    });
   }
 
   render(){
@@ -36,7 +36,7 @@ class LocaleForm extends React.Component {
         </form>
         <h3>{this.state.option ? "You selected:" : null} {this.state.option}</h3>
       </div>
-    )
+    );
   }
 }
 
