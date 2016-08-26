@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import {getLocaleData, getPropName, getDelimiter} from '../actions/actions'
-
-
-
+import { connect } from 'react-redux';
+import {getLocaleData, getPropName, getDelimiter} from '../actions/actions';
 
 class LocaleList extends React.Component {
   constructor(props){
@@ -11,46 +8,42 @@ class LocaleList extends React.Component {
     this.state = {
       value: '',
       country: ''
-    }
+    };
   }
+
   handleContent(country){
-    // console.log('this is the country', country)
     fetch('/location/' + country).then(response => response.json()).then(data => {
-      // console.log('in handleContent', data);
-      var shit = data.main[country].delimiters[this.props.propertyName]
-      // console.log('this is shit', JSON.stringify(shit));
-      var dem = JSON.stringify(shit)
+      let queryDelimiterValue = data.main[country].delimiters[this.props.propertyName]
+      let propertyDelimiterValue = JSON.stringify(queryDelimiterValue)
       this.setState({
-        value: dem,
+        value: propertyDelimiterValue,
         country: country
-      })
-      this.props.dispatch(getDelimiter(dem))
-    })
+      });
+      this.props.dispatch(getDelimiter(propertyDelimiterValue));
+    });
   }
 
   render(){
-    var style = {
-      position: 'absolute',
-      left: '60%',
-      top: '20%',
-      width: '30%',
-      textAlign: 'center',
-      fontSize: '18px'
+
+    let listItemStyles = {
+      cursor:"pointer", 
+      backgroundColor:"#D6D6D6",
+      fontFamily: 'Baloo Tamma, cursive',
+      fontWeight: 'bold',
+      marginBottom: '5'
     };
-    var style2 = {
-      listStyleType: 'none',
-      cursor: 'pointer'
-    };
-    console.log('from localeList', this.props)
+
     return (
-      <div>
-        <ul>
-          {this.props.list ? this.props.list.map((item, index) => {
-            var country = item.path.split('/')[1]
-           return <li style={style2} key={index} onClick={() => this.handleContent(country)}>{country}</li>;
-          }): null} 
-        </ul>
-        <div style={style}>
+      <div className="row">
+        <div className="col-sm-4">
+          <ul className= "list-group">
+            {this.props.list ? this.props.list.map((item, index) => {
+              let country = item.path.split('/')[1]
+             return <li style={listItemStyles} className="list-group-item" key={index} onClick={() => this.handleContent(country)}>{country}</li>;
+            }): null} 
+          </ul>
+        </div>
+        <div className="col-sm-4">
           <h2>{this.state.value.length ? "Output for" : null} {this.state.country}</h2>
           <h1>{this.state.value.length ? this.state.value : null}</h1>
         </div>
@@ -66,4 +59,5 @@ function mapStateToProps(state){
     delimiter: state.delimiter
   }
 }
+
 export default connect(mapStateToProps)(LocaleList);

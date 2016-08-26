@@ -1,22 +1,26 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import LocaleForm from './LocaleForm'
-import LocaleList from './LocaleList'
+import { connect } from 'react-redux';
+import LocaleForm from './LocaleForm';
+import LocaleList from './LocaleList';
 import { Appbar } from 'muicss/react';
 
+
 class App extends React.Component {
+
   render(){
-    console.log('from app', this.props);
+    let appBarStyles = {
+      fontFamily: 'Lobster, cursive'
+    }
     return (
       <div>
-        <Appbar></Appbar>
-        <h1>Delimiters</h1>
+        <Appbar><h1 style={appBarStyles}>Delimiters</h1></Appbar>
         <LocaleForm/>
         <LocaleList list={this.props.localeList}/>
       </div>
     )
   }
 }
+
 function mapStateToProps(state){
   return {
     localeList : state.localeList,

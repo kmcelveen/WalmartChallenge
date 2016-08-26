@@ -2,7 +2,6 @@ var express = require('express');
 var path = require('path');
 var httpProxy = require('http-proxy');
 var publicPath = path.resolve(__dirname, 'public');
-// var axios = require('axios');
 var request = require('request');
 var configs = require('./config.js').GIT_API_KEY;
 
@@ -37,6 +36,8 @@ proxy.on('error', function(e) {
   console.log('Could not connect to proxy, please try again...')
 });
 
+
+
 app.get('/userproperty/:propertyName', function(req, res){
   var options = {
     url: 'https://api.github.com/search/code?q=' + req.params.propertyName + 'in:file+repo:unicode-cldr/cldr-misc-full&access_token=' + configs,
@@ -51,6 +52,7 @@ app.get('/userproperty/:propertyName', function(req, res){
   });
 });
 
+
 app.get('/location/:locale', function(req, res){
     var options = {
       url: 'https://api.github.com/repos/unicode-cldr/cldr-misc-full/contents/main/' + req.params.locale + '/delimiters.json?access_token=' + configs,
@@ -61,12 +63,13 @@ app.get('/location/:locale', function(req, res){
         if(err) {
           console.log('this is the error', err);
         }
-        console.log('this is the body', body)
         var delimiters = JSON.parse(body)
         var decodeContent = new Buffer(delimiters.content, 'base64');
         res.send(decodeContent.toString());
     });
 });
+
+
 
 app.listen(port, function () {
   console.log('Server running on port ' + port)
